@@ -2,14 +2,19 @@ package com.utm;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class UserInterface implements IUserInterface {
     private JFrame mainFrame;
     private JPanel topPanel;
     private JPanel tasksListPanel;
     private JPanel bottomPanel;
+    private ITaskService taskService;
 
     UserInterface() {
+        taskService = new TaskService();
+
         mainFrame = new JFrame("TodoApp");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -21,17 +26,18 @@ public class UserInterface implements IUserInterface {
         tasksListPanel = new JPanel();
         tasksListPanel.setBorder(BorderFactory.createTitledBorder("tasks"));
 
-        JPanel task = new JPanel();
-        task.setBorder(BorderFactory.createTitledBorder("task1"));
-        JLabel taskName = new JLabel();
-        taskName.setText("task1");
-        task.add(taskName);
-
-        tasksListPanel.add(task);
-        
-
 
         bottomPanel = new JPanel();
+        JButton openCreateTaskFrame = new JButton("New task");
+        openCreateTaskFrame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new CreateTaskFrame(taskService);
+            }
+        });
+
+        bottomPanel.add(openCreateTaskFrame);
+
 
         mainFrame.add(topPanel, BorderLayout.NORTH);
         mainFrame.add(tasksListPanel, BorderLayout.CENTER);
