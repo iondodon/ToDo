@@ -1,8 +1,7 @@
 package com.utm;
 
-public class Main {
-
+public class TodoApp {
     public static void main(String[] args) {
-	    
+        new UserInterface().show();
     }
 }
