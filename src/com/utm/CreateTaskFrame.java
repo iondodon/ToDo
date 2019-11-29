@@ -1,26 +1,30 @@
 package com.utm;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 class CreateTaskFrame extends JFrame {
-    ITaskService taskService;
     JTextField taskNameTextField;
+    JTextField taskDescriptionTextField;
+    TaskService taskService;
 
-    CreateTaskFrame(ITaskService taskService) {
+    CreateTaskFrame(List<AbstractTask> tasks) {
         super("New task");
 
-        this.taskService = taskService;
+        this.taskService = new TaskService(tasks);
 
         setSize( 150, 100 );
         setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 
-        setLayout( new FlowLayout() );
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         taskNameTextField = new JTextField();
         add(taskNameTextField);
+
+        taskDescriptionTextField = new JTextField();
+        add(taskDescriptionTextField);
 
         JButton addTaskButton = new JButton("Add task");
         CreateTaskFrame creatorFrame = this;
@@ -38,5 +42,9 @@ class CreateTaskFrame extends JFrame {
 
     public String getTaskName() {
         return this.taskNameTextField.getText();
+    }
+
+    public String getTaskDescription() {
+        return this.taskDescriptionTextField.getText();
     }
 }

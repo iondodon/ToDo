@@ -10,11 +10,8 @@ public class UserInterface implements IUserInterface {
     private JPanel topPanel;
     private JPanel tasksListPanel;
     private JPanel bottomPanel;
-    private ITaskService taskService;
 
     UserInterface() {
-        taskService = new TaskService();
-
         mainFrame = new JFrame("TodoApp");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -32,7 +29,7 @@ public class UserInterface implements IUserInterface {
         openCreateTaskFrame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                new CreateTaskFrame(taskService);
+                new CreateTaskFrame(TodoApp.getTasks());
             }
         });
 
