@@ -1,31 +1,49 @@
 package com.utm;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
-public class AbstractTask extends JPanel {
+public class AbstractTask extends JPanel implements IUserInterface {
     String name;
     String description;
+    ITasksHolder subtasksPanel;
+    TaskToolbar taskToolbar;
+    AbstractTask parentTask;
+    ITaskService taskService;
 
-    private List<AbstractTask> tasks = new ArrayList<>();
-
-    public AbstractTask(String name, String description) {
+    public AbstractTask(String name, String description, AbstractTask parentTask) {
+        taskService = new TaskService(this);
+        this.parentTask = parentTask;
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.name = name;
         this.description = description;
 
+        setBorder(BorderFactory.createTitledBorder(this.name));
         add(new JTextArea(description));
 
-        JButton openAddSubtaskButton = new JButton("Add subtask");
-        openAddSubtaskButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                new CreateTaskFrame(tasks);
-            }
-        });
+        subtasksPanel = new TasksHolderPanel();
+        add((JPanel)subtasksPanel);
 
-        setBorder(BorderFactory.createTitledBorder(this.name));
+        taskToolbar = new TaskToolbar(this);
+        add(taskToolbar);
+    }
+
+    public String getTaskName() {
+        return name;
+    }
+
+    public String getTaskDescription() {
+        return description;
+    }
+
+    public ITasksHolder getSubtasksPanel() {
+        return subtasksPanel;
+    }
+
+    public AbstractTask getParentTask() {
+        return parentTask;
+    }
+
+    public ITaskService getTaskService() {
+        return taskService;
     }
 }

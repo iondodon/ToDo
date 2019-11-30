@@ -1,22 +1,20 @@
 package com.utm;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
 
 class CreateTaskFrame extends JFrame {
     JTextField taskNameTextField;
     JTextField taskDescriptionTextField;
     TaskService taskService;
 
-    CreateTaskFrame(List<AbstractTask> tasks) {
+
+    CreateTaskFrame(AbstractTask task) {
         super("New task");
 
-        this.taskService = new TaskService(tasks);
+        this.taskService = new TaskService(task);
 
         setSize( 150, 100 );
-        setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+        setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
 
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -28,11 +26,9 @@ class CreateTaskFrame extends JFrame {
 
         JButton addTaskButton = new JButton("Add task");
         CreateTaskFrame creatorFrame = this;
-        addTaskButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                taskService.addNewTask(creatorFrame);
-            }
+        addTaskButton.addActionListener(actionEvent -> {
+            taskService.addNewTask(creatorFrame);
+            creatorFrame.dispose();
         });
 
         add(addTaskButton);
