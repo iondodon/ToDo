@@ -1,6 +1,7 @@
 package com.utm;
 
 public interface ITaskService {
-    void addNewTask(CreateTaskFrame creatorFrame);
+    void addNewComposedTask(CreateTaskFrame creatorFrame);
+    void addNewSimpleTask(CreateTaskFrame creatorFrame);
     void removeTask(AbstractTask task);
 }

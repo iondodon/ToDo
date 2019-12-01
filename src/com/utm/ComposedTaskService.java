@@ -3,22 +3,43 @@ package com.utm;
 import javax.swing.*;
 import java.util.List;
 
-/**
- * A TaskService has a task.
- */
-public class TaskService implements ITaskService {
-    private AbstractTask task;
 
-    TaskService(AbstractTask task) {
+public class ComposedTaskService implements ITaskService {
+    private ComposedTask task;
+
+    ComposedTaskService(ComposedTask task) {
         this.task = task;
     }
 
     @Override
-    public void addNewTask(CreateTaskFrame creatorFrame) {
+    public void addNewComposedTask(CreateTaskFrame creatorFrame) {
         ITasksHolder panelHoldingTasks = task.getSubtasksPanel();
 
         List<AbstractTask> tasks = panelHoldingTasks.getTasks();
-        AbstractTask newTask = new AbstractTask(
+        AbstractTask newTask = new ComposedTask(
+                creatorFrame.getTaskName(),
+                creatorFrame.getTaskDescription(),
+                task
+        );
+        tasks.add(newTask);
+
+        JPanel subtasksPanel = (JPanel) task.getSubtasksPanel();
+        subtasksPanel.removeAll();
+
+        for(AbstractTask task: tasks) {
+            subtasksPanel.add(task);
+        }
+
+        subtasksPanel.revalidate();
+        subtasksPanel.repaint();
+    }
+
+    @Override
+    public void addNewSimpleTask(CreateTaskFrame creatorFrame) {
+        ITasksHolder panelHoldingTasks = task.getSubtasksPanel();
+
+        List<AbstractTask> tasks = panelHoldingTasks.getTasks();
+        AbstractTask newTask = new SimpleTask(
                 creatorFrame.getTaskName(),
                 creatorFrame.getTaskDescription(),
                 task
@@ -38,7 +59,7 @@ public class TaskService implements ITaskService {
 
     @Override
     public void removeTask(AbstractTask taskToRemove) {
-        AbstractTask parentTask = taskToRemove.getParentTask();
+        ComposedTask parentTask = taskToRemove.getParentTask();
 
         if(parentTask == null){
             return;

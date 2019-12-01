@@ -2,16 +2,12 @@ package com.utm;
 
 import javax.swing.*;
 
-public class AbstractTask extends JPanel implements IUserInterface {
+public abstract class AbstractTask extends JPanel implements IUserInterface {
     String name;
     String description;
-    ITasksHolder subtasksPanel;
-    TaskToolbar taskToolbar;
-    AbstractTask parentTask;
-    ITaskService taskService;
+    ComposedTask parentTask;
 
-    public AbstractTask(String name, String description, AbstractTask parentTask) {
-        taskService = new TaskService(this);
+    public AbstractTask(String name, String description, ComposedTask parentTask) {
         this.parentTask = parentTask;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.name = name;
@@ -19,12 +15,6 @@ public class AbstractTask extends JPanel implements IUserInterface {
 
         setBorder(BorderFactory.createTitledBorder(this.name));
         add(new JTextArea(description));
-
-        subtasksPanel = new TasksHolderPanel();
-        add((JPanel)subtasksPanel);
-
-        taskToolbar = new TaskToolbar(this);
-        add(taskToolbar);
     }
 
     public String getTaskName() {
@@ -35,15 +25,9 @@ public class AbstractTask extends JPanel implements IUserInterface {
         return description;
     }
 
-    public ITasksHolder getSubtasksPanel() {
-        return subtasksPanel;
-    }
-
-    public AbstractTask getParentTask() {
+    public ComposedTask getParentTask() {
         return parentTask;
     }
 
-    public ITaskService getTaskService() {
-        return taskService;
-    }
+    public abstract ITaskService getTaskService();
 }

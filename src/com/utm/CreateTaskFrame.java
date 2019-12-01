@@ -2,16 +2,13 @@ package com.utm;
 
 import javax.swing.*;
 
-class CreateTaskFrame extends JFrame {
+public class CreateTaskFrame extends JFrame {
     JTextField taskNameTextField;
     JTextField taskDescriptionTextField;
-    TaskService taskService;
+    ITaskService taskService;
 
-
-    CreateTaskFrame(AbstractTask task) {
+    CreateTaskFrame() {
         super("New task");
-
-        this.taskService = new TaskService(task);
 
         setSize( 150, 100 );
         setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
@@ -24,16 +21,27 @@ class CreateTaskFrame extends JFrame {
         taskDescriptionTextField = new JTextField();
         add(taskDescriptionTextField);
 
-        JButton addTaskButton = new JButton("Add task");
+        JButton addSimpleTaskButton = new JButton("add st");
         CreateTaskFrame creatorFrame = this;
-        addTaskButton.addActionListener(actionEvent -> {
-            taskService.addNewTask(creatorFrame);
+        addSimpleTaskButton.addActionListener(actionEvent -> {
+            taskService.addNewSimpleTask(creatorFrame);
             creatorFrame.dispose();
         });
+        add(addSimpleTaskButton);
 
-        add(addTaskButton);
+        JButton addComposedTaskButton = new JButton("add ct");
+        addComposedTaskButton.addActionListener(actionEvent -> {
+            taskService.addNewComposedTask(creatorFrame);
+            creatorFrame.dispose();
+        });
+        add(addComposedTaskButton);
 
         super.setVisible(true);
+    }
+
+    CreateTaskFrame(ComposedTask composedTask) {
+        this();
+        taskService = new ComposedTaskService(composedTask);
     }
 
     public String getTaskName() {

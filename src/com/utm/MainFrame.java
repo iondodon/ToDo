@@ -16,7 +16,7 @@ public class MainFrame extends JFrame implements IUserInterface {
         topPanel = new JPanel();
         topPanel.add(appName);
 
-        tasksPanel = new AbstractTask("main", "main", null);
+        tasksPanel = new ComposedTask("main", "main", null);
         JScrollPane scrollPane = new JScrollPane(tasksPanel);
 
         add(topPanel, BorderLayout.NORTH);

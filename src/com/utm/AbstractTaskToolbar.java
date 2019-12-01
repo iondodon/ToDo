@@ -2,8 +2,7 @@ package com.utm;
 
 import javax.swing.*;
 
-public class TaskToolbar extends JPanel {
-    JButton openAddSubtaskButton;
+public abstract class AbstractTaskToolbar extends JPanel {
     JButton removeTaskButton;
 
     JButton setInProgressButton;
@@ -12,13 +11,9 @@ public class TaskToolbar extends JPanel {
     AbstractTask task;
     ITaskService taskService;
 
-    public TaskToolbar(AbstractTask task) {
+    public AbstractTaskToolbar(AbstractTask task) {
         this.task = task;
         this.taskService = task.getTaskService();
-
-        openAddSubtaskButton = new JButton("+");
-        openAddSubtaskButton.addActionListener(actionEvent -> new CreateTaskFrame(task));
-        add(openAddSubtaskButton);
 
         removeTaskButton = new JButton("-");
         removeTaskButton.addActionListener(actionEvent -> this.taskService.removeTask(task));
