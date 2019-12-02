@@ -15,14 +15,18 @@ public abstract class AbstractTaskToolbar extends JPanel {
         this.task = task;
         this.taskService = task.getTaskService();
 
-        removeTaskButton = new JButton("-");
-        removeTaskButton.addActionListener(actionEvent -> this.taskService.removeTask(task));
-        add(removeTaskButton);
+        if(task.getParentTask() != null) {
+            setInProgressButton = new JButton("in progress");
+            setInProgressButton.addActionListener(actionEvent -> this.task.getState().setInProgress());
+            add(setInProgressButton);
 
-        setInProgressButton = new JButton("in progress");
-        add(setInProgressButton);
+            setDoneButton = new JButton("done");
+            setDoneButton.addActionListener(actionEvent -> this.task.getState().setDone());
+            add(setDoneButton);
 
-        setDoneButton = new JButton("done");
-        add(setDoneButton);
+            removeTaskButton = new JButton("-");
+            removeTaskButton.addActionListener(actionEvent -> this.task.getState().removeTask());
+            add(removeTaskButton);
+        }
     }
 }

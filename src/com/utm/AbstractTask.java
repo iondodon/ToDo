@@ -3,10 +3,10 @@ package com.utm;
 import javax.swing.*;
 
 public abstract class AbstractTask extends JPanel implements IUserInterface {
-    String name;
-    String description;
-    ComposedTask parentTask;
-    ITaskState state;
+    private String name;
+    private String description;
+    private ComposedTask parentTask;
+    private ITaskState state;
 
     public AbstractTask(String name, String description, ComposedTask parentTask) {
         this.parentTask = parentTask;
@@ -16,6 +16,12 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
 
         setBorder(BorderFactory.createTitledBorder(this.name));
         add(new JLabel(description));
+
+        state = new TodoState(this);
+    }
+
+    public ITaskState getState() {
+        return state;
     }
 
     public String getTaskName() {
