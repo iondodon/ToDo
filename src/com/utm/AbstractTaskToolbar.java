@@ -9,7 +9,7 @@ public abstract class AbstractTaskToolbar extends JPanel {
     JButton setDoneButton;
 
     AbstractTask task;
-    ITaskService taskService;
+    AbstractTaskService taskService;
 
     public AbstractTaskToolbar(AbstractTask task) {
         this.task = task;

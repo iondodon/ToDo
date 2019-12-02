@@ -5,7 +5,7 @@ import javax.swing.*;
 public class ComposedTask extends AbstractTask {
     ITasksHolder subtasksPanel;
     ComposedTaskToolbar taskToolbar;
-    ITaskService taskService;
+    AbstractTaskService taskService;
 
     public ComposedTask(String name, String description, ComposedTask parentTask) {
         super(name, description, parentTask);
@@ -20,7 +20,7 @@ public class ComposedTask extends AbstractTask {
     }
 
     @Override
-    public ITaskService getTaskService() {
+    public AbstractTaskService getTaskService() {
         return taskService;
     }
 

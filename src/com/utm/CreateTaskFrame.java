@@ -5,7 +5,7 @@ import javax.swing.*;
 public class CreateTaskFrame extends JFrame {
     JTextField taskNameTextField;
     JTextField taskDescriptionTextField;
-    ITaskService taskService;
+    AbstractTaskService taskService;
 
     CreateTaskFrame() {
         super("New task");
@@ -24,19 +24,19 @@ public class CreateTaskFrame extends JFrame {
         JButton addSimpleTaskButton = new JButton("add st");
         CreateTaskFrame creatorFrame = this;
         addSimpleTaskButton.addActionListener(actionEvent -> {
-            taskService.addNewSimpleTask(creatorFrame);
+            taskService.addNewSimpleSubtask(creatorFrame);
             creatorFrame.dispose();
         });
         add(addSimpleTaskButton);
 
         JButton addComposedTaskButton = new JButton("add ct");
         addComposedTaskButton.addActionListener(actionEvent -> {
-            taskService.addNewComposedTask(creatorFrame);
+            taskService.addNewComposedSubtask(creatorFrame);
             creatorFrame.dispose();
         });
         add(addComposedTaskButton);
 
-        super.setVisible(true);
+        setVisible(true);
     }
 
     CreateTaskFrame(ComposedTask composedTask) {
