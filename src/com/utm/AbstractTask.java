@@ -6,6 +6,7 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
     String name;
     String description;
     ComposedTask parentTask;
+    ITaskState state;
 
     public AbstractTask(String name, String description, ComposedTask parentTask) {
         this.parentTask = parentTask;
@@ -14,7 +15,7 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
         this.description = description;
 
         setBorder(BorderFactory.createTitledBorder(this.name));
-        add(new JTextArea(description));
+        add(new JLabel(description));
     }
 
     public String getTaskName() {

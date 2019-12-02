@@ -4,11 +4,11 @@ import javax.swing.*;
 
 public class CreateTaskFrame extends JFrame {
     JTextField taskNameTextField;
-    JTextField taskDescriptionTextField;
+    JTextArea taskDescriptionTextArea;
     AbstractTaskService taskService;
 
     CreateTaskFrame() {
-        super("New task");
+        super("New subtask");
 
         setSize( 150, 100 );
         setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
@@ -18,8 +18,8 @@ public class CreateTaskFrame extends JFrame {
         taskNameTextField = new JTextField();
         add(taskNameTextField);
 
-        taskDescriptionTextField = new JTextField();
-        add(taskDescriptionTextField);
+        taskDescriptionTextArea = new JTextArea();
+        add(taskDescriptionTextArea);
 
         JButton addSimpleTaskButton = new JButton("add st");
         CreateTaskFrame creatorFrame = this;
@@ -49,6 +49,6 @@ public class CreateTaskFrame extends JFrame {
     }
 
     public String getTaskDescription() {
-        return this.taskDescriptionTextField.getText();
+        return this.taskDescriptionTextArea.getText();
     }
 }

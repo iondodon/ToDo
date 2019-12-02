@@ -8,7 +8,7 @@ public class TasksHolderPanel extends JPanel implements ITasksHolder {
     private List<AbstractTask> tasks = new ArrayList<>();
 
     public TasksHolderPanel() {
-        setBorder(BorderFactory.createTitledBorder("tasks"));
+        setBorder(BorderFactory.createTitledBorder("subtasks"));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
