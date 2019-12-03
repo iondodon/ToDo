@@ -24,6 +24,10 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
         return state;
     }
 
+    public void setState(ITaskState state) {
+        this.state = state;
+    }
+
     public String getTaskName() {
         return name;
     }
