@@ -5,9 +5,13 @@ import java.util.List;
 
 public class ComposedTaskService extends AbstractTaskService {
     private ComposedTask task;
+    private ITaskFactory simpleTaskFactory;
+    private ITaskFactory composedTaskFactory;
 
     ComposedTaskService(ComposedTask task) {
         this.task = task;
+        this.simpleTaskFactory = new SimpleTaskFactory();
+        this.composedTaskFactory = new ComposedTaskFactory();
     }
 
     @Override
@@ -15,7 +19,7 @@ public class ComposedTaskService extends AbstractTaskService {
         ITasksHolder panelHoldingTasks = task.getSubtasksPanel();
 
         List<AbstractTask> tasks = panelHoldingTasks.getTasks();
-        AbstractTask newTask = new ComposedTask(
+        AbstractTask newTask = this.composedTaskFactory.createTask(
                 creatorFrame.getTaskName(),
                 creatorFrame.getTaskDescription(),
                 task
@@ -30,7 +34,7 @@ public class ComposedTaskService extends AbstractTaskService {
         ITasksHolder panelHoldingTasks = task.getSubtasksPanel();
 
         List<AbstractTask> tasks = panelHoldingTasks.getTasks();
-        AbstractTask newTask = new SimpleTask(
+        AbstractTask newTask = this.simpleTaskFactory.createTask(
                 creatorFrame.getTaskName(),
                 creatorFrame.getTaskDescription(),
                 task
