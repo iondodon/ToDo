@@ -24,6 +24,9 @@ public class ComposedTask extends AbstractTask {
         return taskService;
     }
 
+    @Override
+    public AbstractTaskToolbar getTaskToolbar() { return taskToolbar; }
+
     public ITasksHolder getSubtasksPanel() {
         return subtasksPanel;
     }

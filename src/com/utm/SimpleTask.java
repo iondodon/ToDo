@@ -17,4 +17,9 @@ public class SimpleTask extends AbstractTask {
     public AbstractTaskService getTaskService() {
         return taskService;
     }
+
+    @Override
+    public SimpleTaskToolbar getTaskToolbar() {
+        return this.taskToolbar;
+    }
 }

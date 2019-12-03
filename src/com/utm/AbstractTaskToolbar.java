@@ -29,4 +29,12 @@ public abstract class AbstractTaskToolbar extends JPanel {
             add(removeTaskButton);
         }
     }
+
+    public JButton getSetInProgressButton() {
+        return this.setInProgressButton;
+    }
+
+    public JButton getSetDoneButton() {
+        return this.setDoneButton;
+    }
 }

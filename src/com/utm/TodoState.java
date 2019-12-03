@@ -14,11 +14,11 @@ public class TodoState implements ITaskState {
 
     @Override
     public void setDone() {
-        this.task.setState(new DoneState(this.task));
+        new Alert("Can't set to Done right from a new task.");
     }
 
     @Override
     public void removeTask() {
-        this.task.getTaskService().removeTask(this.task);
+        new Alert("Can't remove an undone task.");
     }
 }

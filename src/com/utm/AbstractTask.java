@@ -41,4 +41,5 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
     }
 
     public abstract AbstractTaskService getTaskService();
+    public abstract AbstractTaskToolbar getTaskToolbar();
 }

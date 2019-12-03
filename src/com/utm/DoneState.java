@@ -14,7 +14,7 @@ public class DoneState implements ITaskState {
 
     @Override
     public void setDone() {
-        this.task.setState(new DoneState(this.task));
+        new Alert("Already set to done");
     }
 
     @Override

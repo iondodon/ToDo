@@ -9,7 +9,7 @@ public class InProgressState implements ITaskState {
 
     @Override
     public void setInProgress() {
-        this.task.setState(new InProgressState(this.task));
+        new Alert("The task is already in progress.");
     }
 
     @Override
@@ -19,6 +19,6 @@ public class InProgressState implements ITaskState {
 
     @Override
     public void removeTask() {
-        this.task.getTaskService().removeTask(this.task);
+        new Alert("Can't remove an undone task.");
     }
 }
