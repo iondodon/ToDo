@@ -20,12 +20,14 @@ public abstract class AbstractTaskToolbar extends JPanel {
             setInProgressButton = new JButton("in progress");
             setInProgressButton.addActionListener(actionEvent -> {
                 this.task.getState().setInProgress();
+                this.task.notifyStateChange();
             });
             add(setInProgressButton);
 
             setDoneButton = new JButton("done");
             setDoneButton.addActionListener(actionEvent -> {
                 this.task.getState().setDone();
+                this.task.notifyStateChange();
             });
             add(setDoneButton);
 

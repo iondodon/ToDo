@@ -7,8 +7,10 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
     private String description;
     private ComposedTask parentTask;
     private ITaskState state;
+    private INotifier notifier;
 
     public AbstractTask(String name, String description, ComposedTask parentTask) {
+        this.notifier = new StateChangeNotifier(this);
         this.parentTask = parentTask;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.name = name;
@@ -16,6 +18,10 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
         this.state = new TodoState(this);
 
         add(new JLabel(description));
+    }
+
+    public void notifyStateChange() {
+        this.notifier.notifyChange();
     }
 
     public ITaskState getState() {
