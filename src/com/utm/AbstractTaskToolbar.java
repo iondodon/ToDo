@@ -1,6 +1,7 @@
 package com.utm;
 
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class AbstractTaskToolbar extends JPanel {
     JButton removeTaskButton;
@@ -17,15 +18,21 @@ public abstract class AbstractTaskToolbar extends JPanel {
 
         if(task.getParentTask() != null) {
             setInProgressButton = new JButton("in progress");
-            setInProgressButton.addActionListener(actionEvent -> this.task.getState().setInProgress());
+            setInProgressButton.addActionListener(actionEvent -> {
+                this.task.getState().setInProgress();
+            });
             add(setInProgressButton);
 
             setDoneButton = new JButton("done");
-            setDoneButton.addActionListener(actionEvent -> this.task.getState().setDone());
+            setDoneButton.addActionListener(actionEvent -> {
+                this.task.getState().setDone();
+            });
             add(setDoneButton);
 
             removeTaskButton = new JButton("-");
-            removeTaskButton.addActionListener(actionEvent -> this.task.getState().removeTask());
+            removeTaskButton.addActionListener(actionEvent -> {
+                this.task.getState().removeTask();
+            });
             add(removeTaskButton);
         }
     }

@@ -22,4 +22,9 @@ public class SimpleTask extends AbstractTask {
     public SimpleTaskToolbar getTaskToolbar() {
         return this.taskToolbar;
     }
+
+    @Override
+    public ITasksHolder getSubtasksPanel() {
+        return null;
+    }
 }

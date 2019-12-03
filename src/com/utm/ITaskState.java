@@ -4,4 +4,5 @@ public interface ITaskState {
     void setInProgress();
     void setDone();
     void removeTask();
+    StateEnum getState();
 }

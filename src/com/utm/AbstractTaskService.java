@@ -42,4 +42,5 @@ public abstract class AbstractTaskService {
 
     public abstract void addNewComposedSubtask(CreateTaskFrame creatorFrame);
     public abstract void addNewSimpleSubtask(CreateTaskFrame creatorFrame);
+    public abstract void makeSimpleTaskComposed();
 }

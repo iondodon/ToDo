@@ -39,4 +39,9 @@ public class ComposedTaskService extends AbstractTaskService {
 
         updateJPanel(task, tasks);
     }
+
+    @Override
+    public void makeSimpleTaskComposed() {
+        System.out.println("The task is already composed.");
+    }
 }

@@ -13,11 +13,9 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.name = name;
         this.description = description;
+        this.state = new TodoState(this);
 
-        setBorder(BorderFactory.createTitledBorder(this.name));
         add(new JLabel(description));
-
-        state = new TodoState(this);
     }
 
     public ITaskState getState() {
@@ -42,4 +40,5 @@ public abstract class AbstractTask extends JPanel implements IUserInterface {
 
     public abstract AbstractTaskService getTaskService();
     public abstract AbstractTaskToolbar getTaskToolbar();
+    public abstract ITasksHolder getSubtasksPanel();
 }

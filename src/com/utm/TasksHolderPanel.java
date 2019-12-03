@@ -1,14 +1,23 @@
 package com.utm;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import javax.swing.border.TitledBorder;
 import java.util.List;
 
 public class TasksHolderPanel extends JPanel implements ITasksHolder {
-    private List<AbstractTask> tasks = new ArrayList<>();
+    private List<AbstractTask> tasks;
+    private AbstractTask holderTask;
 
-    public TasksHolderPanel() {
-        setBorder(BorderFactory.createTitledBorder("subtasks"));
+    public TasksHolderPanel(AbstractTask holderTask, List<AbstractTask> tasks) {
+        this.holderTask = holderTask;
+        this.tasks = tasks;
+
+        if(holderTask.getParentTask() != null) {
+            TitledBorder border = BorderFactory.createTitledBorder("subtasks");
+            border.setTitleJustification(TitledBorder.RIGHT);
+            setBorder(border);
+        }
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
