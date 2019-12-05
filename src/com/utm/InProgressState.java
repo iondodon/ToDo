@@ -15,7 +15,7 @@ public class InProgressState implements ITaskState {
 
         Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
         TitledBorder titledBorder = BorderFactory
-                .createTitledBorder(loweredetched, this.task.getTaskName() + "(" + this.state + ")");
+                .createTitledBorder(loweredetched, this.task.getTaskName() + ": " + this.state);
         titledBorder.setTitleJustification(TitledBorder.LEFT);
         this.task.setBorder(titledBorder);
     }

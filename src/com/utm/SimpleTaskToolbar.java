@@ -3,15 +3,15 @@ package com.utm;
 import javax.swing.*;
 
 public class SimpleTaskToolbar extends AbstractTaskToolbar {
-    private JButton mkComposedButton;
+    private JButton mkComposedTaskButton;
 
     public SimpleTaskToolbar(AbstractTask task) {
         super(task);
 
-//        mkComposedButton = new JButton("mk composed");
-//        mkComposedButton.addActionListener(actionEvent -> {
+//        mkComposedTaskButton = new JButton("mk composed");
+//        mkComposedTaskButton.addActionListener(actionEvent -> {
 //           task.getTaskService().makeSimpleTaskComposed();
 //        });
-//        add(mkComposedButton);
+//        add(mkComposedTaskButton);
     }
 }

@@ -16,7 +16,7 @@ public class TodoState implements ITaskState {
         if(this.task.getParentTask() != null) {
             Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
             TitledBorder titledBorder = BorderFactory
-                    .createTitledBorder(loweredetched, this.task.getTaskName() + "(" + this.state + ")");
+                    .createTitledBorder(loweredetched, this.task.getTaskName() + ": " + this.state);
             titledBorder.setTitleJustification(TitledBorder.LEFT);
             this.task.setBorder(titledBorder);
         }

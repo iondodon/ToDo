@@ -22,8 +22,6 @@ public class ComposedTask extends AbstractTask {
 
     public void setSubtasksPanel(ITasksHolder tasksHolder) {
         this.subtasksPanel = tasksHolder;
-        this.subtasksPanel.getPanelHoldingTasks().validate();
-        this.subtasksPanel.getPanelHoldingTasks().repaint();
     }
 
     @Override
