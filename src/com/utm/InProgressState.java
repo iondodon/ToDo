@@ -31,6 +31,10 @@ public class InProgressState implements ITaskState {
 
     @Override
     public void setDone() {
+        if(!this.task.getTaskService().doneAllSubtasks(this.task)){
+            new Alert("All subtasks have to be done.");
+            return;
+        }
         this.task.setState(new DoneState(this.task));
     }
 

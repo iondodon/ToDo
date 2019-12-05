@@ -22,6 +22,11 @@ public class SimpleTaskService extends AbstractTaskService {
     }
 
     @Override
+    public boolean doneAllSubtasks(AbstractTask task) {
+        return true;
+    }
+
+    @Override
     public void addNewComposedSubtask(CreateTaskFrame creatorFrame) {
         System.out.println("A SimpleTask can't have subtasks.");
     }

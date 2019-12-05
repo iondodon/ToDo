@@ -36,6 +36,10 @@ public class DoneState implements ITaskState {
 
     @Override
     public void removeTask() {
-        this.task.getTaskService().removeTask(this.task);
+        if(this.task.getTaskService().doneAllSubtasks(this.task)) {
+            this.task.getTaskService().removeTask(this.task);
+        } else {
+            new Alert("The parent task and all subtasks have to be done.");
+        }
     }
 }

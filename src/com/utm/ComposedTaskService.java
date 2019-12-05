@@ -48,4 +48,18 @@ public class ComposedTaskService extends AbstractTaskService {
     public void makeSimpleTaskComposed() {
         System.out.println("The task is already composed.");
     }
+
+    @Override
+    public boolean doneAllSubtasks(AbstractTask task) {
+        boolean allDone = true;
+        for (AbstractTask subtask: this.task.subtasksPanel.getTasks()) {
+            if(subtask instanceof ComposedTask) {
+                allDone = doneAllSubtasks(subtask);
+            }
+            if(subtask.getState().getState() == StateEnum.Todo || subtask.getState().getState() == StateEnum.InProgress) {
+                allDone = false;
+            }
+        }
+        return allDone;
+    }
 }
