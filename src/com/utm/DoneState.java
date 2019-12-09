@@ -39,7 +39,7 @@ public class DoneState implements ITaskState {
         if(this.task.getTaskService().doneAllSubtasks(this.task)) {
             this.task.getTaskService().removeTask(this.task);
         } else {
-            new Alert("The parent task and all subtasks have to be done.");
+            new Alert("You can delete this! The parent task and all subtasks have to be done.");
         }
     }
 }

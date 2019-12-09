@@ -1,6 +1,7 @@
 package com.utm;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CreateTaskFrame extends JFrame {
     JTextField taskNameTextField;
@@ -10,18 +11,20 @@ public class CreateTaskFrame extends JFrame {
     CreateTaskFrame() {
         super("New subtask");
 
-        setSize( 150, 100 );
+        setSize( 150, 50 );
         setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
 
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         taskNameTextField = new JTextField();
         add(taskNameTextField);
-
+        taskNameTextField.setMaximumSize(new Dimension(800,50));
         taskDescriptionTextArea = new JTextArea();
         add(taskDescriptionTextArea);
+        taskDescriptionTextArea.setMaximumSize(new Dimension(800,80));
 
-        JButton addSimpleTaskButton = new JButton("add st");
+        JButton addSimpleTaskButton = new JButton("Add simple task");
+        add(addSimpleTaskButton, BorderLayout.CENTER);
         CreateTaskFrame creatorFrame = this;
         addSimpleTaskButton.addActionListener(actionEvent -> {
             taskService.addNewSimpleSubtask(creatorFrame);
@@ -29,7 +32,7 @@ public class CreateTaskFrame extends JFrame {
         });
         add(addSimpleTaskButton);
 
-        JButton addComposedTaskButton = new JButton("add ct");
+        JButton addComposedTaskButton = new JButton("Add composed task");
         addComposedTaskButton.addActionListener(actionEvent -> {
             taskService.addNewComposedSubtask(creatorFrame);
             creatorFrame.dispose();
@@ -37,6 +40,8 @@ public class CreateTaskFrame extends JFrame {
         add(addComposedTaskButton);
 
         setVisible(true);
+        setTitle("Add task");
+        setBounds(601,200,400,200);
     }
 
     CreateTaskFrame(ComposedTask composedTask) {
